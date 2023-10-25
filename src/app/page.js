@@ -30,8 +30,9 @@ export default function Home() {
       console.log('Connected to the WebSocket');
     });
 
-    ws.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
+    ws.addEventListener('message', async(event) => {
+      const data = await JSON.parse(event.data);
+      console.log(data)
       if (data.success === false) {
         toast.error(data.message, toastOptions);
       } else if (data.email) {
